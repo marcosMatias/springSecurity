@@ -1,0 +1,6 @@
+br/com/spring/security/controller/FormController.class
+br/com/spring/security/config/SecurityConfig.class
+br/com/spring/security/SpringSecurityApplication.class
+br/com/spring/security/config/KeyAuthFilter.class
+br/com/spring/security/config/SecurityConfig$1.class
+br/com/spring/security/model/record/FormRecord.class
