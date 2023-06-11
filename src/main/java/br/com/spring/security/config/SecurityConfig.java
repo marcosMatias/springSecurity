@@ -25,7 +25,8 @@ public class SecurityConfig {
     @Value("${http.auth-token}")
     private String principalRequestValue;
     
-    
+    @Value("${http.auth-teste-header-name}")
+    private String testeCab;
   
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,7 +42,14 @@ public class SecurityConfig {
 					authentication.setAuthenticated(false);
 					throw new BadCredentialsException("The API key was not found or not the expected value.");
 				}
+				
+				if(testeCab.equals("teste")) {
+					System.out.println("PARANGARICOTIRRIMIRUARO!!!!!!!!!!!!");
+				}
+				
 				authentication.setAuthenticated(true);
+				
+				
 				return authentication;
 
 			}
@@ -49,8 +57,13 @@ public class SecurityConfig {
     	
 	
 		     http.csrf((csrf) -> csrf.disable())
+		     	.httpBasic(b-> b.disable())
+		     	.formLogin(f-> f.disable())
+		     	.logout(l-> l.disable())
 				 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				 .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()).addFilter(filter)
+				 .authorizeHttpRequests(authorize -> authorize.anyRequest()
+						                                      .authenticated())
+				 .addFilter(filter)
 				;
 		
 		     
